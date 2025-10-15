@@ -28,7 +28,7 @@
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
     }
-    .container{max-width:1040px;margin:0 auto;padding:32px}
+    .container2{max-width:1040px;margin:0 auto;padding:32px}
     header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
@@ -69,7 +69,7 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container2">
     <header>
       <div class="brand">
         <div class="logo">CS</div>
@@ -87,16 +87,67 @@
     </header>
 
     <section class="hero" aria-labelledby="hero-title">
-  <main class="container posts-list">
-    <h1>Все публикации</h1>
-    <input type="text" id="search" placeholder="Поиск по статьям..." />
-    <div id="posts-container" class="posts-grid"></div>
-  </main>
+		<main class="container posts-list">
+			<h1>Все публикации</h1>
+			<input type="text" id="search" placeholder="Поиск по статьям..." />
+			<div id="posts-container" class="posts-grid"></div>
+		</main>
     </section>
 
+    <main class="grid">
+      <section id="posts" class="posts">
+
+        <!-- Post 1 -->
+        <article class="post">
+          <h3>Как безопасно настроить SSH: практическое руководство</h3>
+          <p>Пошаговая инструкция по настройке SSH, отказу от паролей, двухфакторной авторизации и ограничению доступа по IP.</p>
+          <div class="tags">
+            <span class="tag">SSH</span>
+            <span class="tag">Hardening</span>
+            <span class="tag">Linux</span>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="post">
+          <h3>Разбор уязвимости: CVE-2024-XXXX — что важно знать</h3>
+          <p>Анализ уязвимости, как её искать в инфраструктуре и патчить без простоя сервисов.</p>
+          <div class="tags">
+            <span class="tag">CVE</span>
+            <span class="tag">Incident Response</span>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="post">
+          <h3>Сетевой мониторинг для малого бизнеса: недорого и эффективно</h3>
+          <p>Набор бесплатных и недорогих инструментов для мониторинга сетевой активности и обнаружения аномалий.</p>
+          <div class="tags">
+            <span class="tag">Monitoring</span>
+            <span class="tag">SIEM</span>
+          </div>
+        </article>
 
       </section>
 
+      <aside>
+        <div class="card" id="about">
+          <h3 style="margin-top:0">О блоге</h3>
+          <p class="small">CyberScribe — личный блог инженера по безопасности. Цель — сделать сложные вещи применимыми: короткие руководства, реальные кейсы и готовые конфиги.</p>
+          <p class="small" style="margin-top:10px">Если хотите связаться: <a href="mailto:hello@example.com" style="color:var(--accent);text-decoration:none">hello@example.com</a></p>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card" id="resources">
+          <h4 style="margin:0 0 8px">Популярные материалы</h4>
+          <ol style="margin:0;padding-left:18px;color:var(--muted)">
+            <li class="small">Шаблон политики безопасности для SMB</li>
+            <li class="small">Как настроить WAF на NGINX</li>
+            <li class="small">Быстрый аудит привилегий в Linux</li>
+          </ol>
+        </div>
+      </aside>
     </main>
 
     <footer id="contact">

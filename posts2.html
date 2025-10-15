@@ -161,16 +161,6 @@
     </footer>
   </div>
 
-  <script src="/assets/script.js">
-    // footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // small keyboard hint for quick search (visual only)
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        alert('Поиск не реализован в шаблоне — можно добавить быструю фильтрацию постов.');
-      }
-    });
-  </script>
+  <script src="/assets/script.js"></script>
 </body>
 </html>

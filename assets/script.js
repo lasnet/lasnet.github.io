@@ -15,7 +15,7 @@ if (window.location.pathname.endsWith("posts.html")) {
             const el = document.createElement("div");
             el.className = "post-card";
             el.innerHTML = `
-              <img src="${post.image}" alt="${post.title}">
+<!--              <img src="${post.image}" alt="${post.title}"> -->
               <h2>${post.title}</h2>
               <p>${post.description}</p>
               <a href="/post.html?id=${post.id}" class="read-more">Читать</a>
@@ -40,7 +40,7 @@ if (window.location.pathname.endsWith("post.html")) {
       document.getElementById("meta-description").content = post.description;
       document.getElementById("og-title").content = post.title;
       document.getElementById("og-description").content = post.description;
-      document.getElementById("og-image").content = post.image;
+<!--      document.getElementById("og-image").content = post.image; -->
       document.getElementById("og-url").content = window.location.href;
       fetch(`/posts/${post.id}.md`)
         .then((r) => r.text())

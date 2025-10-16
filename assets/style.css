@@ -11,6 +11,11 @@ nav a.active, nav a:hover { color: #00e0a0; }
 .post-card img { width: 100%; border-radius: 8px; }
 .post-card h2 { margin-top: 10px; color: #fff; }
 .post-card p { color: #aaa; font-size: 0.9em; }
+
+.post-card {cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;}
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 0 15px rgba(124,58,237,0.2);}
+.post-card a { position: relative; z-index: 2;}
+
 .read-more, .back-button { color: #00e0a0; text-decoration: none; font-weight: 500; display: inline-block; margin-top: 10px; }
 input#search { display: block; width: 100%; max-width: 500px; margin: 20px 0; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #111; color: #eee; }
 .post-container { max-width: 800px; }

@@ -1,5 +1,5 @@
 // ===============================
-// CyberScribe blog base script
+// CyberScribe blog script (fixed)
 // ===============================
 
 // Добавляем текущий год в футер
@@ -12,23 +12,34 @@ document.addEventListener("DOMContentLoaded", () => {
 // Рендер списка постов
 // ===============================
 if (document.querySelector("#posts-container")) {
-  fetch("posts/posts.json")
-    .then((r) => r.json())
+  // Универсальный путь к JSON (работает на index.html и posts.html)
+  const jsonPath = "./posts/posts.json";
+
+  fetch(jsonPath)
+    .then((r) => {
+      if (!r.ok) throw new Error("Не удалось загрузить posts.json");
+      return r.json();
+    })
     .then((posts) => {
       const container = document.getElementById("posts-container");
       const searchInput = document.getElementById("search");
 
       function renderPosts(list) {
+        if (!list.length) {
+          container.innerHTML = `<p style="color:#9aa7bd">Публикации не найдены.</p>`;
+          return;
+        }
+
         container.innerHTML = list
           .map(
             (post) => `
-          <article class="post">
-            <h3><a href="${post.url}">${post.title}</a></h3>
-            <p>${post.description}</p>
-            <div class="tags">
-              ${post.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
-            </div>
-          </article>`
+            <article class="post">
+              <h3><a href="${post.url}">${post.title}</a></h3>
+              <p>${post.description}</p>
+              <div class="tags">
+                ${post.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
+              </div>
+            </article>`
           )
           .join("");
       }
@@ -48,12 +59,15 @@ if (document.querySelector("#posts-container")) {
       }
     })
     .catch((err) => {
-      console.error("Ошибка загрузки списка постов:", err);
+      console.error("Ошибка при загрузке постов:", err);
+      const container = document.getElementById("posts-container");
+      if (container)
+        container.innerHTML = `<p style="color:#9aa7bd">Ошибка загрузки списка постов. Проверь путь к posts/posts.json.</p>`;
     });
 }
 
 // ===============================
-// Отображение Markdown-статьи
+// Отображение Markdown статьи
 // ===============================
 if (document.getElementById("post-content")) {
   const params = new URLSearchParams(window.location.search);
@@ -66,7 +80,7 @@ if (document.getElementById("post-content")) {
         return r.text();
       })
       .then((md) => {
-        // Простой конвертер Markdown → HTML
+        // Простейший Markdown → HTML
         const html = md
           .replace(/^### (.*$)/gim, "<h3>$1</h3>")
           .replace(/^## (.*$)/gim, "<h2>$1</h2>")

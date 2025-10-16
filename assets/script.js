@@ -1,4 +1,4 @@
-if (window.location.pathname.endsWith("posts.html")) {
+if (window.location.pathname.endsWith("posts2.html")) {
   fetch("/posts/posts.json")
     .then((r) => r.json())
     .then((posts) => {

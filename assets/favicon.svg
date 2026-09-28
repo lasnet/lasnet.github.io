@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="18" fill="#111318"/>
+  <path d="M32 8 52 18v13c0 13-8.5 21-20 25C20.5 52 12 44 12 31V18z" fill="#123d31" stroke="#43d69f" stroke-width="2"/>
+  <text x="32" y="37" text-anchor="middle" fill="#43d69f" font-family="Arial,sans-serif" font-size="15" font-weight="700">LA</text>
+</svg>

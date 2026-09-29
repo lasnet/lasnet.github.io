@@ -141,7 +141,12 @@
     <section class="section section-dark" id="cases">
       <div class="shell">
         <div class="section-heading reveal"><p class="eyebrow" data-i18n="casesKicker">Selected work</p><h2 data-i18n="casesTitle">Case studies</h2></div>
-        <article class="case-card reveal">
+        <div class="case-carousel reveal" aria-roledescription="carousel" aria-label="Case studies">
+          <button class="case-arrow case-arrow-prev" type="button" aria-label="Previous case">
+            <span aria-hidden="true">←</span><small data-i18n="previousCase">Previous</small>
+          </button>
+          <div class="case-slides" aria-live="polite">
+        <article class="case-card case-slide" data-case-slide aria-hidden="false">
           <div class="case-visual visual-wazuh" aria-hidden="true"><span class="visual-label">WAZUH / SIEM</span><div class="radar"><i></i><i></i><i></i><b></b></div><div class="log-lines"><i></i><i></i><i></i><i></i></div></div>
           <div class="case-content">
             <div class="case-meta"><span>01</span><span data-i18n="caseOneType">SIEM · Detection · Automation</span></div>
@@ -155,8 +160,39 @@
             <div class="case-tags"><span>Wazuh</span><span>Python</span><span>Airflow</span><span>ClickHouse</span><span>Keycloak</span></div>
           </div>
         </article>
-        <article class="case-card case-reverse reveal">
-          <div class="case-visual visual-network" aria-hidden="true"><span class="visual-label">CHECK POINT / NETWORK</span><div class="network-map"><span>DMZ</span><span>APP</span><span>DB</span><i></i><i></i></div></div>
+        <article class="case-card case-reverse case-slide" data-case-slide aria-hidden="true" hidden>
+          <div class="case-visual visual-network" aria-hidden="true">
+            <span class="visual-label">CHECK POINT / NETWORK</span>
+            <svg class="segmentation-diagram" viewBox="0 0 560 480" role="img" aria-label="Three-tier network segmentation architecture">
+              <defs>
+                <marker id="network-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#e5b86b"/></marker>
+                <filter id="network-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <rect class="segment-boundary" x="130" y="36" width="404" height="184" rx="18"/>
+              <rect class="segment-boundary" x="130" y="260" width="404" height="184" rx="18"/>
+              <text class="segment-name" x="508" y="60" text-anchor="end">SERVICE A</text>
+              <text class="segment-name" x="508" y="284" text-anchor="end">SERVICE B</text>
+
+              <rect class="external-zone" x="20" y="142" width="82" height="196" rx="18"/>
+              <path class="external-icon" d="M46 223h30M52 215l-8 8 8 8M70 215l8 8-8 8M61 202v42"/>
+              <text class="external-label" x="61" y="268" text-anchor="middle"><tspan x="61">EXTERNAL</tspan><tspan x="61" dy="14">NETWORKS</tspan></text>
+
+              <g class="tier-node"><rect x="154" y="91" width="94" height="84" rx="16"/><text x="201" y="124" text-anchor="middle">DMZ</text><text class="tier-caption" x="201" y="145" text-anchor="middle">TIER 1</text></g>
+              <g class="tier-node"><rect x="286" y="91" width="94" height="84" rx="16"/><text x="333" y="124" text-anchor="middle">APP</text><text class="tier-caption" x="333" y="145" text-anchor="middle">TIER 2</text></g>
+              <g class="tier-node"><rect x="418" y="91" width="94" height="84" rx="16"/><text x="465" y="124" text-anchor="middle">DB</text><text class="tier-caption" x="465" y="145" text-anchor="middle">TIER 3</text></g>
+              <g class="tier-node"><rect x="154" y="315" width="94" height="84" rx="16"/><text x="201" y="348" text-anchor="middle">DMZ</text><text class="tier-caption" x="201" y="369" text-anchor="middle">TIER 1</text></g>
+              <g class="tier-node"><rect x="286" y="315" width="94" height="84" rx="16"/><text x="333" y="348" text-anchor="middle">APP</text><text class="tier-caption" x="333" y="369" text-anchor="middle">TIER 2</text></g>
+              <g class="tier-node"><rect x="418" y="315" width="94" height="84" rx="16"/><text x="465" y="348" text-anchor="middle">DB</text><text class="tier-caption" x="465" y="369" text-anchor="middle">TIER 3</text></g>
+
+              <g class="network-links" marker-end="url(#network-arrow)">
+                <path class="bidirectional" d="M106 133h45"/><path class="bidirectional" d="M252 133h31"/><path d="M384 133h31"/>
+                <path class="bidirectional" d="M106 357h45"/><path class="bidirectional" d="M252 357h31"/><path d="M384 357h31"/>
+                <path class="bidirectional" d="M201 179v131"/><path class="bidirectional" d="M333 179v131"/>
+                <path class="cross-link bidirectional" d="M219 179 315 310"/><path class="cross-link bidirectional" d="M315 179 219 310"/>
+              </g>
+              <g class="flow-dots" filter="url(#network-glow)"><circle cx="267" cy="133" r="3"/><circle cx="399" cy="133" r="3"/><circle cx="267" cy="357" r="3"/><circle cx="399" cy="357" r="3"/></g>
+            </svg>
+          </div>
           <div class="case-content">
             <div class="case-meta"><span>02</span><span data-i18n="caseTwoType">Firewall · Segmentation · High availability</span></div>
             <h3 data-i18n="caseTwoTitle">Check Point infrastructure and network segmentation</h3>
@@ -169,6 +205,16 @@
             <div class="case-tags"><span>Check Point</span><span>ClusterXL</span><span>IPS</span><span>VPN</span><span>Segmentation</span></div>
           </div>
         </article>
+          </div>
+          <button class="case-arrow case-arrow-next" type="button" aria-label="Next case">
+            <small data-i18n="nextCase">Next</small><span aria-hidden="true">→</span>
+          </button>
+          <div class="case-pagination" role="group" aria-label="Choose case">
+            <button class="active" type="button" data-case-index="0" aria-label="Show case 1" aria-current="true">01</button>
+            <span aria-hidden="true"></span>
+            <button type="button" data-case-index="1" aria-label="Show case 2" aria-current="false">02</button>
+          </div>
+        </div>
       </div>
     </section>
 

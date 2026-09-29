@@ -17,7 +17,7 @@ const translations = {
     serviceFourTitle:"Архитектура и документация",serviceFourText:"Сетевые схемы, политики безопасности и понятная техническая документация по реализованным решениям.",
     skillsKicker:"Компетенции",skillsTitle:"Инструменты полезны, когда решают правильную задачу.",skillsIntro:"Практический набор технологий для мониторинга, защиты инфраструктуры и инженерных задач.",
     skillGroupOne:"SIEM и мониторинг",skillGroupTwo:"Сетевая безопасность",skillGroupThree:"Средства защиты",skillGroupFour:"Автоматизация и платформы",
-    casesKicker:"Избранные работы",casesTitle:"Практические кейсы",caseDetails:"Подробнее о кейсе",challenge:"Задача",implementation:"Реализация",result:"Результат",
+    casesKicker:"Избранные работы",casesTitle:"Практические кейсы",previousCase:"Назад",nextCase:"Далее",caseDetails:"Подробнее о кейсе",challenge:"Задача",implementation:"Реализация",result:"Результат",
     caseOneType:"SIEM · Обнаружение · Автоматизация",caseOneTitle:"Внедрение и развитие SIEM на базе Wazuh",
     caseOneSummary:"Централизованная система сбора и анализа событий для разнородной инфраструктуры с собственными правилами обнаружения, уведомлениями и автоматической отчётностью.",
     caseOneChallenge:"Развернуть Wazuh, подключить инфраструктурные системы и средства защиты, реализовать обработку событий, сценарии обнаружения, отчётности и оповещения.",
@@ -103,6 +103,37 @@ if ("IntersectionObserver" in window) {
 } else {
   document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
 }
+
+const caseCarousel = document.querySelector(".case-carousel");
+const caseSlides = [...document.querySelectorAll("[data-case-slide]")];
+const caseDots = [...document.querySelectorAll("[data-case-index]")];
+let activeCase = 0;
+
+function showCase(index, direction = "next") {
+  activeCase = (index + caseSlides.length) % caseSlides.length;
+  caseCarousel.dataset.direction = direction;
+  caseSlides.forEach((slide, slideIndex) => {
+    const active = slideIndex === activeCase;
+    slide.hidden = !active;
+    slide.setAttribute("aria-hidden", String(!active));
+  });
+  caseDots.forEach((dot, dotIndex) => {
+    const active = dotIndex === activeCase;
+    dot.classList.toggle("active", active);
+    dot.setAttribute("aria-current", String(active));
+  });
+}
+
+document.querySelector(".case-arrow-prev").addEventListener("click", () => showCase(activeCase - 1, "previous"));
+document.querySelector(".case-arrow-next").addEventListener("click", () => showCase(activeCase + 1, "next"));
+caseDots.forEach((dot) => dot.addEventListener("click", () => {
+  const nextIndex = Number(dot.dataset.caseIndex);
+  showCase(nextIndex, nextIndex < activeCase ? "previous" : "next");
+}));
+caseCarousel.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft") showCase(activeCase - 1, "previous");
+  if (event.key === "ArrowRight") showCase(activeCase + 1, "next");
+});
 
 document.getElementById("contact-form").addEventListener("submit", (event) => {
   event.preventDefault();
